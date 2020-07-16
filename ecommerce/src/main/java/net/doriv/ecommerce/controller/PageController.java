@@ -11,7 +11,25 @@ public class PageController {
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("page");
-		mav.addObject("StartMessage","Welcome to the MHP Shop!");
+//		mav.addObject("StartMessage","Welcome to the MHP Shop!");
+		mav.addObject("title","Home");
+		mav.addObject("userClickHome",true);
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/about" })
+	public ModelAndView about() {
+		ModelAndView mav = new ModelAndView("page");
+		mav.addObject("title","About MHP");
+		mav.addObject("userClickAbout",true);
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/contact" })
+	public ModelAndView contact() {
+		ModelAndView mav = new ModelAndView("page");
+		mav.addObject("title","Contact MHP");
+		mav.addObject("userClickContact",true);
 		return mav;
 	}
 //	@RequestMapping(value="/test")
