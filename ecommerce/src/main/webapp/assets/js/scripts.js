@@ -1,5 +1,9 @@
 $(function(){
 	switch(menu){
+		default: 
+			$('#home').addClass('active');
+			$('#a_'+menu).addClass('active');
+			break
 		case'Home':
 			$('#home').addClass('active');
 			break;
@@ -9,8 +13,8 @@ $(function(){
 		case'Contact MHP':
 			$('#contact').addClass('active');
 			break;
-		case'Catalog':
-			$('#catalog').addClass('active');
+		case'All Items':
+			$('#listItems').addClass('active');
 			break;
 	}
 })
