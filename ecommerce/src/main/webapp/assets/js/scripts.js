@@ -1,6 +1,7 @@
 $(function(){
 	switch(menu){
 		default: 
+			if(menu == "Home") break;
 			$('#home').addClass('active');
 			$('#a_'+menu).addClass('active');
 			break
