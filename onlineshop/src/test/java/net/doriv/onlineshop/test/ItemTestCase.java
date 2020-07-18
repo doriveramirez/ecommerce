@@ -68,8 +68,8 @@ public class ItemTestCase {
 //		assertEquals("Error when try to fetch a list of item that are active.",1,itemDAO.listActiveItemsByCatalog(3).size());
 //	}
 	
-	@Test
-	public void testGetLatestActiveItem() {
-		assertEquals("Error when try to get the latest active item.",2,itemDAO.getLatestActiveItems(2).size());
-	}
+//	@Test
+//	public void testGetLatestActiveItem() {
+//		assertEquals("Error when try to get the latest active item.",2,itemDAO.getLatestActiveItems(2).size());
+//	}
 }

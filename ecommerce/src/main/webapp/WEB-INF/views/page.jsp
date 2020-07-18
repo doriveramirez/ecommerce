@@ -25,6 +25,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Bootstrap theme -->
 <link href="${css}/bootstrap.min.theme.css" rel="stylesheet">
@@ -65,6 +66,8 @@
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/jquery.min.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
+		<script src="${js}/dataTables.bootstrap.js"></script>
+		<script src="${js}/jquery.dataTables.js"></script>
 		<script src="${js}/scripts.js"></script>
 	</div>
 

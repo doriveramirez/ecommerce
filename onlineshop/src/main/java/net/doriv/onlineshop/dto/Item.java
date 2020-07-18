@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Item {
 
@@ -73,6 +75,7 @@ public class Item {
 				+ views + "]";
 	}
 
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_item;
@@ -81,9 +84,12 @@ public class Item {
 	private int stock;
 	@Column(name= "price")
 	private double price;
+	@JsonIgnore
 	private String image;
+	@JsonIgnore
 	@Column(name= "is_active")
 	private boolean active = true;
+	@JsonIgnore
 	@Column(name= "id_catalog")
 	private int id_catalog;
 	private int purchases;
