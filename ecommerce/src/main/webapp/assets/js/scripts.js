@@ -44,12 +44,20 @@ $(function(){
 					data: 'name'
 				},
 				{
-					data: 'stock'
+					data: 'stock',
+					mRender: function(data, type, row){
+						if(data < 1){
+							return '<span style="color:red">Out of stock!</span>';
+						} else {
+							return '<span style="color:green">' + data + '</span>';
+						}
+						return data;
+					}
 				},
 				{
 					data: 'price',
 					mRender: function(data, type, row){
-						return data + '&#36;'
+						return data + '&#8364;'
 					}
 				},
 				{
@@ -58,7 +66,12 @@ $(function(){
 					mRender: function(data, type, row){
 						var link = '';
 						link += '<a href="'+ window.contextRoot + '/show/' + data + '/item" class="btn btn-primary">View</a>';
-						link += '<a href="'+ window.contextRoot + '/cart/add/' + data + '/item" class="btn btn-success">Add to cart</a>';
+						if(row.stock < 1){
+							link += '<a href="javascript:void(0)" class="btn btn-success disabled">Add to cart</a>';
+						} else {
+							link += '<a href="'+ window.contextRoot + '/cart/add/' + data + '/item" class="btn btn-success">Add to cart</a>';
+						}
+						
 					return link;
 					}
 				}

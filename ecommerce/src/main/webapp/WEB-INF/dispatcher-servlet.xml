@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd
    ">
 	<context:component-scan
-		base-package="net.doriv.ecommerce.controller" />
+		base-package="net.doriv.ecommerce" />
 	<context:component-scan
 		base-package="net.doriv.onlineshop" />
 	<bean id="viewResolver"
