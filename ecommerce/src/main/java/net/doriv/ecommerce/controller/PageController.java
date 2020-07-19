@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.doriv.onlineshop.dao.CatalogDAO;
+import net.doriv.onlineshop.dao.ItemDAO;
 import net.doriv.onlineshop.dto.Catalog;
+import net.doriv.onlineshop.dto.Item;
 
 @Controller
 public class PageController {
 	
 	@Autowired
 	private CatalogDAO catalogDAO;
+	@Autowired
+	private ItemDAO itemDAO;
 	
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
@@ -43,6 +47,20 @@ public class PageController {
 		mav.addObject("catalogs", catalogDAO.List());
 		mav.addObject("catalog", catalog);
 		mav.addObject("userClickCatalog",true);
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/show/{id_item}/item" })
+	public ModelAndView showItem(@PathVariable("id_item") int id) {
+		ModelAndView mav = new ModelAndView("page");
+		Item item = itemDAO.get(id);
+		Catalog catalog= catalogDAO.get(item.getId_catalog());
+		item.setViews(item.getViews() + 1);
+		itemDAO.update(item);
+		mav.addObject("title", item.getName());
+		mav.addObject("item", item);
+		mav.addObject("catalog", catalog);
+		mav.addObject("userClickItem",true);
 		return mav;
 	}
 	

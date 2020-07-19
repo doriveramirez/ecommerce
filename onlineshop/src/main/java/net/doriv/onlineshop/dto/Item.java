@@ -25,6 +25,12 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public int getStock() {
 		return stock;
 	}
@@ -75,7 +81,6 @@ public class Item {
 				+ views + "]";
 	}
 
-	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_item;

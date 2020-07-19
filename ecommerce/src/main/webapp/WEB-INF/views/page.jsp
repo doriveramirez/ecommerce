@@ -19,8 +19,8 @@
 <title>MHP Online Shop - ${title}</title>
 
 <script>
-	console.log = 'hola';
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}'
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -53,6 +53,10 @@
 
 			<c:if test="${userClickContact == true}">
 				<%@include file="contact.jsp"%>
+			</c:if>
+			
+			<c:if test="${userClickItem == true}">
+				<%@include file="singleItem.jsp"%>
 			</c:if>
 			
 			<c:if test="${userClickAllItems == true or userClickCatalog == true}">
