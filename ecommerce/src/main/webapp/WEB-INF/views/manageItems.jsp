@@ -133,7 +133,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<sf:form modelAttribute="catalog" action="${contextRoot}/manage/catalog/" method="POST" class="form-horizontal">
+					<sf:form id="catalogForm" modelAttribute="catalog" action="${contextRoot}/manage/catalog/" method="POST" class="form-horizontal">
 						<div class="form-group">
 							<label for="name" class="control-label col-md-4">Catalog name</label>
 							<div class="col-md-8">

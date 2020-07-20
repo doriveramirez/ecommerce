@@ -183,4 +183,27 @@ $(function(){
 			}
 		});
 	}
+	
+	var $catalogForm = $('#catalogForm');
+	if($catalogForm.length){
+		$catalogForm.validate({
+			rules : {
+				name : {
+					required: true,
+					minLength: 2
+				}
+			},
+			messages : {
+				name : {
+					required: 'Catalog name must be added.',
+					minlength: 'The name can´t be less than 2 characters'
+				}
+			},
+			errorElement: 'em',
+			errorPlacement: function(error, element){
+				error.addClass('help-block');
+				error.insertAfter(element);
+			}
+		});
+	}
 });
