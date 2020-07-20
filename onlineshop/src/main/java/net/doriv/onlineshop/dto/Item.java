@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -43,12 +48,6 @@ public class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public boolean isActive() {
 		return active;
 	}
@@ -73,11 +72,11 @@ public class Item {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Item [id_item=" + id_item + ", name=" + name + ", stock=" + stock + ", price=" + price + ", image="
-				+ image + ", active=" + active + ", id_catalog=" + id_catalog + ", purchases=" + purchases + ", views="
+		return "Item [id_item=" + id_item + ", code=" + code + ", name=" + name + ", stock=" + stock + ", price="
+				+ price + ", active=" + active + ", id_catalog=" + id_catalog + ", purchases=" + purchases + ", views="
 				+ views + "]";
 	}
 
@@ -85,13 +84,13 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_item;
 	private String code;
+	@NotBlank(message = "Name required.")
 	private String name;
+	@Min(value=0, message="Stock can't be negative.")
 	private int stock;
+	@Min(value=0, message="Price can't be negative.")
 	@Column(name= "price")
 	private double price;
-	@JsonIgnore
-	private String image;
-	@JsonIgnore
 	@Column(name= "is_active")
 	private boolean active = true;
 	@JsonIgnore
@@ -100,6 +99,15 @@ public class Item {
 	private int purchases;
 	private int views;
 	
+	@Transient
+	private MultipartFile file;
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public Item() {
 		this.code = UUID.randomUUID().toString();
 	}

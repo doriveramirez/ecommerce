@@ -6,7 +6,7 @@ import net.doriv.onlineshop.dto.Item;
 public interface ItemDAO {
 	
 	Item get(int id);
-	List<Item> List();
+	List<Item> list();
 	boolean add(Item item);
 	boolean update(Item item);
 	boolean delete(Item item);

@@ -59,6 +59,10 @@
 				<%@include file="singleItem.jsp"%>
 			</c:if>
 			
+			<c:if test="${userClickManageItems == true}">
+				<%@include file="manageItems.jsp"%>
+			</c:if>
+			
 			<c:if test="${userClickAllItems == true or userClickCatalog == true}">
 				<%@include file="listItems.jsp"%>
 			</c:if>
@@ -67,10 +71,11 @@
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 
-		<!-- Bootstrap core JavaScript -->
+		<!-- JavaScript -->
 		<script src="${js}/jquery.min.js"></script>
 		<script src="${js}/bootstrap.bundle.min.js"></script>
 		<script src="${js}/dataTables.bootstrap.js"></script>
+		<script src="${js}/bootbox.min.js"></script>
 		<script src="${js}/jquery.dataTables.js"></script>
 		<script src="${js}/scripts.js"></script>
 	</div>

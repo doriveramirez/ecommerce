@@ -26,11 +26,6 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	public java.util.List<Item> List() {
-		return sessionFactory.getCurrentSession().createQuery("FROM item", Item.class).getResultList();
-	}
-
-	@Override
 	public boolean add(Item item) {
 		try {
 			sessionFactory.getCurrentSession().persist(item);
@@ -61,6 +56,11 @@ public class ItemDAOImpl implements ItemDAO {
 			ex.printStackTrace();
 		}
 		return false;
+	}
+	
+	@Override
+	public java.util.List<Item> list() {
+		return sessionFactory.getCurrentSession().createQuery("FROM Item", Item.class).getResultList();
 	}
 
 	@Override

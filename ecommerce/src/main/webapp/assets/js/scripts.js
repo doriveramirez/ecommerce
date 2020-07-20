@@ -17,6 +17,9 @@ $(function(){
 		case'All Items':
 			$('#listItems').addClass('active');
 			break;
+		case'Manage Items':
+			$('#manageItems').addClass('active');
+			break;
 	}
 	
 
@@ -76,6 +79,108 @@ $(function(){
 					}
 				}
 			]
+		});
+	}
+	
+	//Alert dissmiss after 3 seconds
+	var $alert = $('.alert');
+	if($alert.length){
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		} , 3000)
+	}
+	
+	var $adminItemsTable = $('#adminItemsTable');
+	if ($adminItemsTable.length){
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/items';
+		$adminItemsTable.DataTable({
+			ajax: {
+				url: jsonUrl,
+				dataSrc: ''
+			},
+			columns: [
+				{
+					data: 'id_item'
+				},
+				{
+					data: 'code',
+					mRender: function(data,type,row){
+						return '<img src="'+window.contextRoot+'/resources/images/' + data + '.jpg" class="adminDataTableImg"/>';
+					}
+				},
+				{
+					data: 'name'
+				},
+				{
+					data: 'stock',
+					mRender: function(data, type, row){
+						if(data < 1){
+							return '<span style="color:red">Out of stock!</span>';
+						} else {
+							return '<span style="color:green">' + data + '</span>';
+						}
+						return data;
+					}
+				},
+				{
+					data: 'price',
+					mRender: function(data, type, row){
+						return data + '&#8364;'
+					}
+				},
+				{
+					data: 'active',
+					bSortable: false,
+					mRender: function(data,type,row){
+						var slider = '';
+						slider += '<label class="switch">';
+						if(data) {
+							slider += '<input type="checkbox" checked="checked" value="'+row.id_item+'" />';
+						} else{
+							slider += '<input type="checkbox" value="'+row.id_item+'" />';
+						}
+						slider += '<div class="slider"/></label>';
+						return slider;
+					}
+				},
+				{
+					data: 'id_item',
+					bSortable: false,
+					mRender: function(data, type, row){
+						var edit = '';
+						edit += '<td><a href="'+window.contextRoot+'/manage/'+data+'/item" class="btn btn-warning">&#9999;</a></td>';
+						return edit;
+					}
+				}
+			],
+				initComplete: function(){
+					var api = this.api();
+					api.$('.switch input[type="checkbox"]').on('change',function(){
+					var checkbox = $(this);
+					var checked = checkbox.prop('checked');
+					var dialogMessage = (checked)? 'Want to active the item?':'Want to deactivate the item?'
+					var value = checkbox.prop('value');
+					bootbox.confirm({
+						size: 'medium',
+						title: 'Item activation',
+						message: dialogMessage,
+						callback: function(confirmed){
+							if(confirmed){
+								var activationUrl = window.contextRoot = '/manage/item/' + value + '/activation/';
+								$.post(activationUrl, function(data){
+									bootbox.alert({
+									size: 'medium',
+									title: 'Information',
+									message: data
+									});
+								});
+							} else {
+								checkbox.prop('checked', !checked);
+							}
+						}
+					});
+				});
+			}
 		});
 	}
 });
