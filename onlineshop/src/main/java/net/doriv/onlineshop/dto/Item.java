@@ -89,12 +89,9 @@ public class Item {
 	@Min(value=0, message="Stock can't be negative.")
 	private int stock;
 	@Min(value=0, message="Price can't be negative.")
-	@Column(name= "price")
 	private double price;
 	@Column(name= "is_active")
 	private boolean active = true;
-	@JsonIgnore
-	@Column(name= "id_catalog")
 	private int id_catalog;
 	private int purchases;
 	private int views;

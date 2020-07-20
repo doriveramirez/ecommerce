@@ -7,6 +7,12 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="nav navbar-nav navbar-left">
+				<li id="register" class="nav-item"><a class="nav-link"
+					href="${contextRoot}/register">Register</a></li>
+				<li id="listItems" class="nav-item"><a class="nav-link"
+					href="${contextRoot}/login">Login</a></li>
+			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li id="home" class="nav-item"><a class="nav-link"
 					href="${contextRoot}/home">Home</a></li>

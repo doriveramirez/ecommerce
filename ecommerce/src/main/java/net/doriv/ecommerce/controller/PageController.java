@@ -85,4 +85,11 @@ public class PageController {
 		mav.addObject("userClickContact",true);
 		return mav;
 	}
+	
+	@RequestMapping(value = { "/register" })
+	public ModelAndView register() {
+		ModelAndView mav = new ModelAndView("page");
+		mav.addObject("title","About MHP");
+		return mav;
+	}
 }

@@ -46,3 +46,12 @@ INSERT INTO item(code,name,stock,price,is_active,id_catalog) VALUES  ('468b6b48-
 INSERT INTO item(code,name,stock,price,is_active,id_catalog) VALUES  ('9cbd94d0-31b0-4673-bc33-39c5b7a29f1c','Asus ROG Strix G15',4,1300,true,2);
 INSERT INTO item(code,name,stock,price,is_active,id_catalog) VALUES  ('e2dfc049-9702-49a1-a2d3-f66b2f2a8e70','Lenovo ideapad S340',4,1300,false,2);
 INSERT INTO item(code,name,stock,price,is_active,id_catalog) VALUES  ('bbc489dc-3925-4c4f-b59a-ee7f4a96476a','The Last Of Us 2',4,60,true,3);
+
+CREATE TABLE cart (
+	id_cart IDENTITY,
+	id_user INT,
+	price DECIMAL(10,2),
+	totalPrice DECIMAL(10,2),
+	CONSTRAINT pk_cart_id PRIMARY KEY (id_cart),
+	CONSTRAINT fk_cart_usr_id FOREIGN KEY (id_user) REFERENCES usr (id_user)
+);
