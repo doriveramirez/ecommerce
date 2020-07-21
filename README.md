@@ -1,5 +1,5 @@
 # ecommerce
-[![Video to show it](http://i3.ytimg.com/vi/L90lCITLnYg/hqdefault.jpg)](https://www.youtube.com/watch?v=L90lCITLnYg)
+[![Video to show it](https://image.prntscr.com/image/9egAp3LxQf_WSBlLnQEbeQ.png)](https://www.youtube.com/watch?v=L90lCITLnYg)
 
 # Known errors
 - Price doesn't copy in manage menu.
