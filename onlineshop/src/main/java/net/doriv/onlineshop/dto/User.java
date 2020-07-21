@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -77,10 +79,13 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_user;
+	@NotBlank(message = "Name is required.")
 	private String name;
 	private boolean admin = false;
 	private boolean enabled = true;
+	@NotBlank(message = "Email is required.")
 	private String email;
+	@NotBlank(message = "Password is required.")
 	private String password;
 	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

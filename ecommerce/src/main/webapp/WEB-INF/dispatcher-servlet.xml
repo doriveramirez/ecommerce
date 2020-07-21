@@ -22,24 +22,35 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	<mvc:annotation-driven />
 	<mvc:resources location="/assets/"
 		mapping="/resources/**" />
 	<!-- webflow config -->
-	<wf:flow-executor id="flowExecutor"/>
-	<wf:flow-registry id="flowRegistry" base-path="/WEB-INF/views/flows" flow-builder-services="flowBuilderServices">
-		<wf:flow-location-pattern value="/**/*-flow.xml"/>
+	<wf:flow-executor id="flowExecutor" />
+	<wf:flow-registry id="flowRegistry"
+		base-path="/WEB-INF/views/flows"
+		flow-builder-services="flowBuilderServices">
+		<wf:flow-location-pattern
+			value="/**/*-flow.xml" />
 	</wf:flow-registry>
-	<wf:flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator"/>
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-		<property name="flowExecutor" ref="flowExecutor"/>
+	<wf:flow-builder-services
+		id="flowBuilderServices" view-factory-creator="viewFactoryCreator"
+		validator="validator" />
+	<bean
+		class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor" />
 	</bean>
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-		<property name="flowRegistry" ref="flowRegistry"/>
-		<property name="order" value="-1"/>
+	<bean
+		class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry" />
+		<property name="order" value="-1" />
 	</bean>
-	<bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-		<property name="viewResolvers" ref="viewResolver"/>
+	<bean id="viewFactoryCreator"
+		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<property name="viewResolvers" ref="viewResolver" />
 	</bean>
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 </beans>

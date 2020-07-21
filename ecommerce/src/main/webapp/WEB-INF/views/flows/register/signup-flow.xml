@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
-<var name="user" class="net.doriv.onlineshop.dto.User"/>
-<on-start>
-	<evaluate expression="registerHandler.init()" result="flowScope.registerModel"/>
-</on-start>
-<view-state id="personal" view="flows/register/signup-personal" model="user">
-	<transition on="confirm" to="confirm"/>
-</view-state>
-<view-state id="confirm" view="flows/register/signup-confirm" model="flowScope.registerModel">
-<transition on="personal" to="personal"/>
-<transition on="success" to="success"/>
-</view-state>
-<end-state id="home" view="externalRedirect:contextRelative:/"/>
-<end-state id="success" view="flows/register/signup-success"/>
-<global-transitions>
-	<transition on="home" to="home"/>
-</global-transitions>
+	<var name="user" class="net.doriv.onlineshop.dto.User" />
+	<!-- <on-start> <evaluate expression="registerHandler.init()" result="flowScope.registerModel"/> 
+		</on-start> -->
+	<view-state id="personal"
+		view="flows/register/signup-personal" model="user">
+		<transition on="confirm" to="confirm" />
+	</view-state>
+	<view-state id="confirm"
+		view="flows/register/signup-confirm" model="flowScope.registerModel">
+		<transition on="personal" to="personal" />
+		<transition on="success" to="success" />
+	</view-state>
+	<action-state id="validate">
+		<evaluate
+			expression="registerHandler.validateUser(user, messageContext)" />
+		<transition on="success" to="personal"/>
+	</action-state>
+	<action-state id="submit">
+		<evaluate
+			expression="registerHandler.saveAll(flowScope.registerModel)" />
+		<transition on="success" to="success" />
+	</action-state>
+	<end-state id="home"
+		view="externalRedirect:contextRelative:/" />
+	<end-state id="success" view="flows/register/signup-success" />
+	<global-transitions>
+		<transition on="home" to="home" validate="false" />
+	</global-transitions>
 </flow>

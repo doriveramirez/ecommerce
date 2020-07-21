@@ -16,6 +16,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="name" class="form-control"
 									placeholder="Name" />
+									<sf:errors path="name" style="color:red" element="em" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -23,6 +24,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="email" class="form-control"
 									placeholder="format@format.com" />
+									<sf:errors path="email" style="color:red" element="em" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -30,6 +32,7 @@
 							<div class="col-md-8">
 								<sf:input type="password" path="password" class="form-control"
 									placeholder="Password" />
+									<sf:errors path="password" style="color:red" element="em" />
 							</div>
 						</div>
 						<div class="form-group">
