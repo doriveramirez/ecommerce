@@ -14,7 +14,8 @@ public class Cart implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Cart [user=" + user + ", id_cart=" + id_cart + ", price=" + price + ", totalPrice=" + totalPrice + "]";
+		return "Cart [user=" + user + ", id_cart=" + id_cart + ", units=" + units + ", price=" + price + ", totalPrice="
+				+ totalPrice + "]";
 	}
 	public int getId_cart() {
 		return id_cart;
@@ -42,9 +43,16 @@ public class Cart implements Serializable {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	public int getUnits() {
+		return units;
+	}
+	public void setUnits(int units) {
+		this.units = units;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_cart;
+	private int units;
 	@Min(value=0, message="Price can't be negative.")
 	private double price;
 	@Min(value=0, message="Price can't be negative.")

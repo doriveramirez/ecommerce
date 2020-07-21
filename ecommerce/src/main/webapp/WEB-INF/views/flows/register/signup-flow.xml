@@ -4,8 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 	<var name="user" class="net.doriv.onlineshop.dto.User" />
-	<!-- <on-start> <evaluate expression="registerHandler.init()" result="flowScope.registerModel"/> 
-		</on-start> -->
+	<!-- <on-start>
+		<evaluate expression="registerHandler.init()"
+			result="flowScope.registerModel" />
+	</on-start> -->
 	<view-state id="personal"
 		view="flows/register/signup-personal" model="user">
 		<transition on="confirm" to="confirm" />
@@ -18,7 +20,7 @@
 	<action-state id="validate">
 		<evaluate
 			expression="registerHandler.validateUser(user, messageContext)" />
-		<transition on="success" to="personal"/>
+		<transition on="success" to="personal" />
 	</action-state>
 	<action-state id="submit">
 		<evaluate

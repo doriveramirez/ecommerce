@@ -30,7 +30,12 @@
 				</c:when>
 				<c:otherwise>
 					<h6>Stock: <span style="color:green">${item.stock}</span></h6>
-					<a href="${contextRoot}/cart/add/${Item.id}/item" class="btn btn-success">Add to cart</a>
+					<security:authorize access="hasAuthority('USER')">
+					<a href="${contextRoot}/cart/add/${item.id_item}/item" class="btn btn-success">Add to cart</a>
+					</security:authorize>
+					<security:authorize access="hasAuthority('ADMIN')">
+					<a href="${contextRoot}/manage/${item.id_item}/item" class="btn btn-warning">&#9999; Edit</a>
+					</security:authorize>
 				</c:otherwise>
 			</c:choose>
 			 <a href="${contextRoot}/show/all/items" class="btn btn-primary">Back</a>

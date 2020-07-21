@@ -1,11 +1,13 @@
 package net.doriv.onlineshop.daoimpl;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Service;
 
 import net.doriv.onlineshop.dao.UserDAO;
 import net.doriv.onlineshop.dto.Cart;
 import net.doriv.onlineshop.dto.User;
 
+@Service("UserDAO")
 public class UserDAOImpl implements UserDAO {
 
 	private SessionFactory sessionFactory;

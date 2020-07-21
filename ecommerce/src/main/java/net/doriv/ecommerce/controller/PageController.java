@@ -1,11 +1,18 @@
 package net.doriv.ecommerce.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.doriv.ecommerce.exception.NotFoundException;
@@ -89,7 +96,38 @@ public class PageController {
 	@RequestMapping(value = { "/register" })
 	public ModelAndView register() {
 		ModelAndView mav = new ModelAndView("page");
-		mav.addObject("title","About MHP");
+		mav.addObject("title","Register");
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/login" })
+	public ModelAndView login(@RequestParam(name="error", required = false)String error, @RequestParam(name="logout", required = false)String logout) {
+		ModelAndView mav = new ModelAndView("login");
+		if(error!=null) {
+			mav.addObject("message", "Invalid credentials.");
+		}
+		if(logout!=null) {
+			mav.addObject("logout", "User has logout.");
+		}
+		mav.addObject("title","Login");
+		return mav;
+	}
+	
+	@RequestMapping(value = { "/perform-logout" })
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth!=null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:login?logout";
+	}
+	
+	@RequestMapping(value = { "/access-denied" })
+	public ModelAndView accessDenied() {
+		ModelAndView mav = new ModelAndView("error");
+		mav.addObject("title","403 - Access Denied");
+		mav.addObject("errorTitle","Error");
+		mav.addObject("errorDescription","You're not authorized to view this page.");
 		return mav;
 	}
 }

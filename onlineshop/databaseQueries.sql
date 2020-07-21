@@ -18,13 +18,13 @@ CREATE TABLE usr (
 	admin BOOLEAN,
 	enabled BOOLEAN,
 	email VARCHAR(100),
-	password VARCHAR(50),
+	password VARCHAR(60),
 	CONSTRAINT pk_usr_id PRIMARY KEY (id_user)
 );
 
-INSERT INTO usr(name,admin,enabled,email,password) VALUES ('David',true,true,'doriveramirez@gmail.com','123456');
-INSERT INTO usr(name,admin,enabled,email,password) VALUES ('Rodolfo',false,true,'Rodolfo@gmail.com','123456');
-INSERT INTO usr(name,admin,enabled,email,password) VALUES ('Juan',false,false,'Juan@gmail.com','123456');
+INSERT INTO usr(name,admin,enabled,email,password) VALUES ('David',true,true,'doriveramirez@gmail.com','$2a$10$Btyol9Ph1pY4gM.3mZIHcOLz30eG933Pjq51HmkXs9rV/C.9GYbgC');
+INSERT INTO usr(name,admin,enabled,email,password) VALUES ('Rodolfo',false,true,'Rodolfo@gmail.com','$2a$10$Btyol9Ph1pY4gM.3mZIHcOLz30eG933Pjq51HmkXs9rV/C.9GYbgC');
+INSERT INTO usr(name,admin,enabled,email,password) VALUES ('Juan',false,false,'Juan@gmail.com','$2a$10$Btyol9Ph1pY4gM.3mZIHcOLz30eG933Pjq51HmkXs9rV/C.9GYbgC');
 
 CREATE TABLE item (
 	id_item IDENTITY,
@@ -50,8 +50,11 @@ INSERT INTO item(code,name,stock,price,is_active,id_catalog) VALUES  ('bbc489dc-
 CREATE TABLE cart (
 	id_cart IDENTITY,
 	id_user INT,
+	units INT,
 	price DECIMAL(10,2),
 	totalPrice DECIMAL(10,2),
 	CONSTRAINT pk_cart_id PRIMARY KEY (id_cart),
 	CONSTRAINT fk_cart_usr_id FOREIGN KEY (id_user) REFERENCES usr (id_user)
 );
+
+INSERT INTO cart(id_user,units,price,totalPrice) VALUES  (2,0,0,0);

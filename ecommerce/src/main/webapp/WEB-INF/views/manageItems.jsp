@@ -133,16 +133,20 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<sf:form id="catalogForm" modelAttribute="catalog" action="${contextRoot}/manage/catalog/" method="POST" class="form-horizontal">
+					<sf:form id="catalogForm" modelAttribute="catalog"
+						action="${contextRoot}/manage/catalog/" method="POST"
+						class="form-horizontal">
 						<div class="form-group">
-							<label for="name" class="control-label col-md-4">Catalog name</label>
+							<label for="name" class="control-label col-md-4">Catalog
+								name</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="name" id="catalog_name" class="form-control"/>
+								<sf:input type="text" path="name" id="catalog_name"
+									class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-md-offset-4 col-md-8">
-								<input type="submit" value="Add Catalog" class="btn btn-primary"/>
+								<input type="submit" value="Add Catalog" class="btn btn-primary" />
 							</div>
 						</div>
 					</sf:form>
